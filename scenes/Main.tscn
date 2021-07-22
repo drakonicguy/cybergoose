@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scenes/Head.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/LaserProjectile.tscn" type="PackedScene" id=2]
 
 [node name="Main" type="CanvasLayer"]
 
 [node name="Head" parent="." instance=ExtResource( 1 )]
 position = Vector2( 311, 467 )
+laser_scene = ExtResource( 2 )
