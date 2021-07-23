@@ -1,10 +1,30 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/Head.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/LaserProjectile.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/testblahblah.jpg" type="Texture" id=4]
 
 [node name="Main" type="CanvasLayer"]
 
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 0.013
+margin_left = -560.0
+margin_top = -216.0
+margin_right = 1168.2
+margin_bottom = 800.0
+texture = ExtResource( 4 )
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Head" parent="." instance=ExtResource( 1 )]
 position = Vector2( 311, 467 )
+z_index = 500
 laser_scene = ExtResource( 2 )
+
+[node name="Camera2D" type="Camera2D" parent="Head"]
+position = Vector2( -15, -163 )
+current = true
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
