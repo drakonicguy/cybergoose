@@ -11,7 +11,7 @@ export (PackedScene) var laser_scene
 
 #global_rotation_degrees << if we need to retrieve rotation degrees use this
 
-func _process(delta):
+func _process(_delta):
 	
 	look_at(get_global_mouse_position())
 	if get_global_mouse_position().x < position.x:

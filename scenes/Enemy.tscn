@@ -11,6 +11,8 @@ height = 27.7237
 "enemies",
 ]]
 collision_layer = 2
+contacts_reported = 1
+contact_monitor = true
 script = ExtResource( 2 )
 
 [node name="enemy placeholder" type="Sprite" parent="."]
@@ -20,3 +22,5 @@ texture = ExtResource( 1 )
 position = Vector2( 1.38898, -0.396851 )
 rotation = 1.53345
 shape = SubResource( 1 )
+
+[connection signal="body_entered" from="." to="." method="_on_Laser_Touched"]

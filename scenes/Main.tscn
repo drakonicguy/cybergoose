@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/Head.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/LaserProjectile.tscn" type="PackedScene" id=2]
@@ -6,11 +6,19 @@
 [ext_resource path="res://assets/testblahblah.jpg" type="Texture" id=4]
 [ext_resource path="res://scripts/Main.gd" type="Script" id=5]
 [ext_resource path="res://scenes/Enemy.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/fff-forward.regular.ttf" type="DynamicFontData" id=7]
+
+[sub_resource type="DynamicFont" id=2]
+size = 70
+font_data = ExtResource( 7 )
 
 [sub_resource type="Curve2D" id=1]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, -120, 0, 0, 0, 0, 0, 720, 0 )
 }
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 540, 60 )
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 5 )
@@ -40,12 +48,31 @@ script = ExtResource( 3 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="Label" type="Label" parent="CanvasLayer"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -96.5
+margin_top = -48.5
+margin_right = 96.5
+margin_bottom = 48.5
+custom_fonts/font = SubResource( 2 )
+text = "FAIL"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="ScrollLeft" type="ColorRect" parent="CanvasLayer"]
 margin_left = 9.0
 margin_top = 196.0
 margin_right = 88.0
 margin_bottom = 379.0
 color = Color( 1, 1, 1, 0.117647 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ScrollRight" type="ColorRect" parent="CanvasLayer"]
 margin_left = 496.216
@@ -70,11 +97,18 @@ curve = SubResource( 1 )
 position = Vector2( -120, 0 )
 
 [node name="EnemyTimer" type="Timer" parent="."]
-wait_time = 0.228
+wait_time = 1.5
 autostart = true
+
+[node name="DespawnArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DespawnArea"]
+position = Vector2( 300, 660 )
+shape = SubResource( 3 )
 
 [connection signal="mouse_entered" from="CanvasLayer/ScrollLeft" to="Camera2D" method="_on_ScrollLeft"]
 [connection signal="mouse_exited" from="CanvasLayer/ScrollLeft" to="Camera2D" method="_on_ScrollLeftStop"]
 [connection signal="mouse_entered" from="CanvasLayer/ScrollRight" to="Camera2D" method="_on_ScrollRight"]
 [connection signal="mouse_exited" from="CanvasLayer/ScrollRight" to="Camera2D" method="_on_ScrollRightStop"]
 [connection signal="timeout" from="EnemyTimer" to="." method="_on_EnemyTimer_timeout"]
+[connection signal="body_entered" from="DespawnArea" to="." method="_on_Enemy_ReachedBottom"]

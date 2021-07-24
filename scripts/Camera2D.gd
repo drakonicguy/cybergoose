@@ -3,7 +3,7 @@ extends Camera2D
 var scroll = "none"
 export var scrollspeed = 5
 
-func _process(delta):
+func _process(_delta):
 	if scroll == "left":
 		self.position.x-=scrollspeed
 	elif scroll == "right":
