@@ -1,13 +1,15 @@
 extends Camera2D
 
 var scroll = "none"
-export var scrollspeed = 5
+export var scrollspeed = 500
+var currentspeed = 0
 
-func _process(_delta):
+func _process(delta):
+	currentspeed = scrollspeed * delta
 	if scroll == "left":
-		self.position.x-=scrollspeed
+		self.position.x -= currentspeed
 	elif scroll == "right":
-		self.position.x+=scrollspeed
+		self.position.x += currentspeed
 	self.position.x = clamp(self.position.x, $"../LBorder".position.x, $"../RBorder".position.x)
 
 func _on_ScrollLeft():

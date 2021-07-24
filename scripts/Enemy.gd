@@ -9,8 +9,6 @@ func _process(_delta):
 #		emit_signal("ReachedBottom")
 		queue_free()
 
-
-
 func _on_Laser_Touched(_body):
 	self.collision_layer = 1
 	var animationtimer = 0
