@@ -12,7 +12,7 @@ func _on_EnemyTimer_timeout():
 	enemy.position = enemy_spawn_location.position
 
 
-func _on_Enemy_ReachedBottom(body):
+func _on_Enemy_ReachedBottom(_body):
 	$CanvasLayer/Label.show()
 	yield(get_tree().create_timer(0.5), "timeout")
 	$CanvasLayer/Label.hide()

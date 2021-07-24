@@ -2,18 +2,17 @@ extends RigidBody2D
 
 #signal ReachedBottom
 export var EnemySpeed = 1
-var dead = false
 
 func _process(_delta):
 	self.position.y+=EnemySpeed
-	if self.position.y >= 600 and dead == false:
+	if self.position.y >= 600:
 #		emit_signal("ReachedBottom")
 		queue_free()
 
 
 
 func _on_Laser_Touched(_body):
-	dead = true
+	self.collision_layer = 1
 	var animationtimer = 0
 	var opacity = 1
 	while animationtimer < 11:

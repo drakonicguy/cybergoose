@@ -65,20 +65,19 @@ __meta__ = {
 }
 
 [node name="ScrollLeft" type="ColorRect" parent="CanvasLayer"]
-margin_left = 9.0
-margin_top = 196.0
-margin_right = 88.0
-margin_bottom = 379.0
+margin_top = 240.0
+margin_right = 60.0
+margin_bottom = 420.0
 color = Color( 1, 1, 1, 0.117647 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ScrollRight" type="ColorRect" parent="CanvasLayer"]
-margin_left = 496.216
-margin_top = 202.674
-margin_right = 575.216
-margin_bottom = 385.674
+margin_left = 540.0
+margin_top = 240.0
+margin_right = 599.0
+margin_bottom = 423.0
 color = Color( 1, 1, 1, 0.117647 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -97,10 +96,12 @@ curve = SubResource( 1 )
 position = Vector2( -120, 0 )
 
 [node name="EnemyTimer" type="Timer" parent="."]
-wait_time = 1.5
+wait_time = 3.0
 autostart = true
 
 [node name="DespawnArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DespawnArea"]
 position = Vector2( 300, 660 )
