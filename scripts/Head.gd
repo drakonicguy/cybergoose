@@ -9,29 +9,46 @@ var speed = 0
 
 export (PackedScene) var laser_scene
 
-#global_rotation_degrees << if we need to retrieve rotation degrees use this
+func _ready():
+	pass
+#	below is a workaround for the center pivot point.
+#	$Sprite.position.y = 75
+#	$Sprite.animation = "default"
+	
 
 func _process(_delta):
-	
-	look_at(get_global_mouse_position())
-	if get_global_mouse_position().x < position.x:
-		$Sprite.flip_v = true
-		if $ShootPosition.position.y < 0:
-			$ShootPosition.position.y = -($ShootPosition.position.y)
-	else:
-		$Sprite.flip_v = false
-		if $ShootPosition.position.y > 0:
-			$ShootPosition.position.y = -($ShootPosition.position.y)
-	
-#	_move(delta)
-
 	pass
-
+#	below is a workaround for the center pivot point.
+#	var distance2mouse = self.global_position.distance_to(get_global_mouse_position())
+#	look_at(get_global_mouse_position())
+#	if get_global_mouse_position().x < position.x:
+#		$Sprite.flip_v = true
+#		$Sprite.position.x = -57
+#		self.global_rotation_degrees = min(self.global_rotation_degrees, 30)
+#		if self.global_rotation_degrees == 30:
+#			$Sprite.flip_v = false
+#			$Sprite.flip_h = true
+#			self.global_rotation_degrees = -30
+#		else:
+#			$Sprite.flip_h = false
+#	else:
+#		$Sprite.flip_v = false
+#		$Sprite.flip_h = false
+#		$Sprite.position.x = -57
+#		self.global_rotation_degrees = min(self.global_rotation_degrees, 30)
+#	if distance2mouse <= 150:
+#		$Sprite.animation = "close"
+#	else:
+#		$Sprite.animation = "default"
+	
 func _input(_event):
 	if Input.is_action_just_pressed("shoot"):
 		var laser = laser_scene.instance()
 		add_child(laser)
-		laser.position = $ShootPosition.position
+		if $Sprite.flip_v == true:
+			laser.position = $ShootPositionFlipped.position
+		else:
+			laser.position = $ShootPosition.position
 
 #func _move(delta):
 #	dir = 0
