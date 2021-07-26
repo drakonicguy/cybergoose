@@ -16,8 +16,10 @@ func _ready():
 	while true:
 		yield(self, "flip")
 		$Sprite.rotation_degrees +=180
+		$Sprite.offset.x = -26
 		yield(self, "unflip")
 		$Sprite.rotation_degrees -=180
+		$Sprite.offset.x = 26
 	
 
 func _process(_delta):
@@ -26,16 +28,14 @@ func _process(_delta):
 	look_at(get_global_mouse_position())
 	if get_global_mouse_position().x < position.x:
 		emit_signal("flip")
-		if distance2mouse <= 150:
-			$Sprite.animation = "closeL"
-		else:
-			$Sprite.animation = "defaultL"
+		$Sprite.flip_h = true
 	else:
 		emit_signal("unflip")
-		if distance2mouse <= 150:
-			$Sprite.animation = "close"
-		else:
-			$Sprite.animation = "default"
+		$Sprite.flip_h = false
+	if distance2mouse <= 200:
+		$Sprite.animation = "close"
+	else:
+		$Sprite.animation = "default"
 	
 func _input(_event):
 	if Input.is_action_just_pressed("shoot"):

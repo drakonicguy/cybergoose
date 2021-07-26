@@ -3,7 +3,9 @@ extends Node2D
 export (PackedScene) var enemy_scene
 signal warningready(x)
 var x = 0
-var onscreen: bool
+
+#func _ready():
+#	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
 func _on_EnemyTimer_timeout():
 	var enemy_spawn_location = $EnemyPath/EnemySpawn

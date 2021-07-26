@@ -27,7 +27,7 @@ extents = Vector2( 540, 60 )
 script = ExtResource( 5 )
 enemy_scene = ExtResource( 6 )
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="BG" type="TextureRect" parent="."]
 anchor_right = 0.013
 margin_left = -560.0
 margin_top = -216.0
@@ -38,15 +38,6 @@ stretch_mode = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Head" parent="." instance=ExtResource( 1 )]
-position = Vector2( 300, 498.726 )
-z_index = 500
-laser_scene = ExtResource( 2 )
-
-[node name="body" type="Sprite" parent="."]
-position = Vector2( 300, 540 )
-texture = ExtResource( 8 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 300, 300 )
@@ -74,20 +65,18 @@ __meta__ = {
 }
 
 [node name="ScrollLeft" type="ColorRect" parent="GUI"]
-margin_top = 240.0
 margin_right = 60.0
-margin_bottom = 420.0
-color = Color( 1, 1, 1, 0.117647 )
+margin_bottom = 600.0
+color = Color( 1, 1, 1, 0 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ScrollRight" type="ColorRect" parent="GUI"]
 margin_left = 540.0
-margin_top = 240.0
 margin_right = 599.0
-margin_bottom = 423.0
-color = Color( 1, 1, 1, 0.117647 )
+margin_bottom = 600.0
+color = Color( 1, 1, 1, 0 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -115,6 +104,16 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DespawnArea"]
 position = Vector2( 300, 660 )
 shape = SubResource( 3 )
+
+[node name="body" type="Sprite" parent="DespawnArea"]
+position = Vector2( 300, 544.009 )
+scale = Vector2( 0.719866, 0.719866 )
+texture = ExtResource( 8 )
+
+[node name="Head" parent="DespawnArea" instance=ExtResource( 1 )]
+position = Vector2( 300, 488.035 )
+z_index = 500
+laser_scene = ExtResource( 2 )
 
 [connection signal="warningready" from="." to="GUI" method="_on_Main_warningready"]
 [connection signal="mouse_entered" from="GUI/ScrollLeft" to="Camera2D" method="_on_ScrollLeft"]
