@@ -38,7 +38,7 @@ __meta__ = {
 }
 
 [node name="Head" parent="." instance=ExtResource( 1 )]
-position = Vector2( 300, 485.241 )
+position = Vector2( 300, 498.726 )
 z_index = 500
 laser_scene = ExtResource( 2 )
 

@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://assets/newhead1.png" type="Texture" id=1]
+[ext_resource path="res://assets/newhead1r.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Head.gd" type="Script" id=2]
-[ext_resource path="res://assets/newhead2.png" type="Texture" id=3]
+[ext_resource path="res://assets/newhead1l.png" type="Texture" id=3]
+[ext_resource path="res://assets/newhead2r.png" type="Texture" id=4]
+[ext_resource path="res://assets/newhead2l.png" type="Texture" id=5]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -11,9 +13,19 @@ animations = [ {
 "name": "default",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 3 ) ],
+"frames": [ ExtResource( 4 ) ],
 "loop": true,
 "name": "close",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "closeL",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "defaultL",
 "speed": 5.0
 } ]
 
@@ -22,10 +34,10 @@ script = ExtResource( 2 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-offset = Vector2( 57, -75 )
+offset = Vector2( 3, -76 )
 
 [node name="ShootPosition" type="Position2D" parent="."]
-position = Vector2( 67, -60 )
+position = Vector2( 103, -157 )
 
 [node name="ShootPositionFlipped" type="Position2D" parent="."]
-position = Vector2( 67, 60 )
+position = Vector2( 96, 124 )
