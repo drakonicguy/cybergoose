@@ -1,6 +1,9 @@
 extends Node2D
 
 export (PackedScene) var enemy_scene
+signal warningready(x)
+var x = 0
+var onscreen: bool
 
 func _on_EnemyTimer_timeout():
 	var enemy_spawn_location = $EnemyPath/EnemySpawn
@@ -10,9 +13,16 @@ func _on_EnemyTimer_timeout():
 	add_child(enemy)
 	
 	enemy.position = enemy_spawn_location.position
+	if enemy.position.x > $Camera2D.position.x+300:
+		x = 568
+	elif enemy.position.x < $Camera2D.position.x-300:
+		x = 32
+	else:
+		x = 0
+	emit_signal("warningready", x)
 
 
 func _on_Enemy_ReachedBottom(_body):
-	$CanvasLayer/Label.show()
+	$GUI/Label.show()
 	yield(get_tree().create_timer(0.5), "timeout")
-	$CanvasLayer/Label.hide()
+	$GUI/Label.hide()

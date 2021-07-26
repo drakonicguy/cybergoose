@@ -11,6 +11,8 @@ height = 27.7237
 "enemies",
 ]]
 collision_layer = 2
+mode = 2
+gravity_scale = 0.0
 contacts_reported = 1
 contact_monitor = true
 script = ExtResource( 2 )
@@ -22,5 +24,9 @@ texture = ExtResource( 1 )
 position = Vector2( 1.38898, -0.396851 )
 rotation = 1.53345
 shape = SubResource( 1 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 2.43474, -4.29153e-06 )
+scale = Vector2( 2.66686, 2.04881 )
 
 [connection signal="body_entered" from="." to="." method="_on_Laser_Touched"]
