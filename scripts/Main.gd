@@ -23,7 +23,6 @@ func _on_EnemyTimer_timeout():
 		x = 0
 	emit_signal("warningready", x)
 
-
 func _on_Enemy_ReachedBottom(_body):
 	$GUI/Label.show()
 	yield(get_tree().create_timer(0.5), "timeout")

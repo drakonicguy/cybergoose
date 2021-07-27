@@ -12,7 +12,7 @@ func _ready():
 		while true:
 			yield(get_tree().create_timer(get_process_delta_time()), "timeout")
 			self.position.y+=150*get_process_delta_time()
-			if self.position.y >= 250:
+			if self.position.y >= 150:
 				self.modulate = Color( 1, 1, 1, opacity)
 				opacity-= 0.1
 			if self.position.y >= 603:
