@@ -23,3 +23,5 @@ func change_hearts(amount):
 			add_child(heart)
 			heart.position.x += heart_distance*i
 			i -= 1
+	else:
+		get_tree().change_scene("res://Scenes/GameOver.tscn")
