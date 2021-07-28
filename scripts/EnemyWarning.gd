@@ -8,13 +8,18 @@ func _ready():
 			$Sprite.flip_h = true
 		self.position.x = get_parent().set_x
 		self.show()
-		var opacity = 1
 		while true:
 			yield(get_tree().create_timer(get_process_delta_time()), "timeout")
 			self.position.y+=150*get_process_delta_time()
-			if self.position.y >= 150:
-				self.modulate = Color( 1, 1, 1, opacity)
-				opacity-= 0.1
 			if self.position.y >= 603:
 					break
-		queue_free()
+	queue_free()
+
+func fade_out():
+	var opacity = self.modulate.a
+	var i = 10
+	while i >= 0:
+		self.modulate = Color( 1, 1, 1, opacity)
+		opacity-= 0.1
+		yield(get_tree().create_timer(get_process_delta_time()), "timeout")
+		i -= 1
