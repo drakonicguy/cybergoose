@@ -13,7 +13,6 @@ func _on_Main_warningready(x):
 	emit_signal("warning_added")
 
 
-
 func _on_ScrollLeft():
 	$ScrollLeft/Sprite.modulate = Color( 1, 1, 1, 0.2)
 
