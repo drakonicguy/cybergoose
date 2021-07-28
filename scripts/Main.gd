@@ -37,4 +37,5 @@ func _on_EnemyDied():
 	$GUI/ScoreLabel.set_text(str(score))
 
 func _on_LevelTimer_timeout():
+# warning-ignore:return_value_discarded
 	get_tree().change_scene("res://Scenes/LevelComplete.tscn")

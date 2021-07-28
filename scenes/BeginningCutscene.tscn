@@ -97,4 +97,3 @@ anims/BeginningCutscene = SubResource( 1 )
 script = ExtResource( 3 )
 
 [connection signal="animation_finished" from="AnimationPlayer" to="AnimationPlayer" method="_on_AnimationPlayer_animation_finished"]
-[connection signal="ready" from="AnimationPlayer" to="AnimationPlayer" method="_on_AnimationPlayer_ready"]
