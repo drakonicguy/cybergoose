@@ -3,10 +3,11 @@ extends RigidBody2D
 export var EnemySpeed = 100
 export var EnemyHealth = 2
 var dead = false
-signal i_spawned
+#signal i_spawned
 signal i_died(y)
 
 func _ready():
+# warning-ignore:return_value_discarded
 	self.connect("i_died", get_tree().get_root().find_node("Main", true, false), "update_score")
 
 func _process(delta):

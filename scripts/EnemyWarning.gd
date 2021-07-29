@@ -17,7 +17,7 @@ func _ready():
 					break
 	queue_free()
 
-func fade_out():
+func fade_out(_y):
 	var opacity = self.modulate.a
 	var i = 10
 	while i >= 0:

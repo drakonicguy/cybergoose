@@ -36,7 +36,7 @@ func _on_EnemyTimer_timeout():
 func _on_Enemy_ReachedBottom(_body):
 	$GUI/HeartBar.change_hearts(-1)
 
-func _on_EnemyDied():
+func _on_EnemyDied(_y):
 	pass
 
 func _on_LevelTimer_timeout():
