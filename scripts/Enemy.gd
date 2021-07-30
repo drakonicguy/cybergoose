@@ -7,6 +7,16 @@ var dead = false
 signal i_died(y)
 
 func _ready():
+	match Globals.currentstage:
+		1:
+			EnemyHealth = 1
+			EnemySpeed = 100
+		2:
+			EnemyHealth = 2
+			EnemySpeed = 110
+		3:
+			EnemyHealth = 3
+			EnemySpeed = 120
 # warning-ignore:return_value_discarded
 	self.connect("i_died", get_tree().get_root().find_node("Main", true, false), "update_score")
 

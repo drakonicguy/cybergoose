@@ -2,6 +2,8 @@ extends AnimationPlayer
 
 
 func _ready():
+	Globals.currentstage = 1
+	Globals.currentscore = 0
 	play("BeginningCutscene")
 
 func _on_AnimationPlayer_animation_finished(_anim_name):

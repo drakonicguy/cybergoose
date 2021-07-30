@@ -5,7 +5,17 @@ signal warningready(x)
 signal visible()
 var enemy
 var x = 0
-var score = 0
+
+func _ready():
+	$GUI/ScoreLabel.set_text(str(Globals.currentscore))
+	match Globals.currentstage:
+		1:
+			$GUI/TimeLabel/LevelTimer.set_wait_time(10.0)
+		2:
+			$GUI/TimeLabel/LevelTimer.set_wait_time(15.0)
+		3:
+			$GUI/TimeLabel/LevelTimer.set_wait_time(20.0)
+	$GUI/TimeLabel/LevelTimer.start()
 
 func _process(_delta):
 	if enemy != null && enemy.position.x < $Camera2D.position.x + 300 && enemy.position.x > $Camera2D.position.x - 300:
@@ -40,9 +50,12 @@ func _on_EnemyDied(_y):
 	pass
 
 func _on_LevelTimer_timeout():
+	Globals.currentstage += 1
+	if Globals.currentscore > Globals.highscore:
+		Globals.highscore = Globals.currentscore
 # warning-ignore:return_value_discarded
 	get_tree().change_scene("res://Scenes/LevelComplete.tscn")
 
 func update_score(y):
-	score += int(5000 / y)
-	$GUI/ScoreLabel.text = str(score)
+	Globals.currentscore += int(5000 / y)
+	$GUI/ScoreLabel.text = str(Globals.currentscore)
