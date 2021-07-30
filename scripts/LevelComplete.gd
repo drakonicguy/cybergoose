@@ -1,5 +1,8 @@
 extends Node2D
 
+func _ready():
+	$Node2D/Label/Label2.text = "SCORE: " + str(Globals.currentscore)
+
 func _on_TextureButton_pressed():
 	if Globals.currentstage == 4:
 # warning-ignore:return_value_discarded

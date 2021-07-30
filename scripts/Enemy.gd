@@ -15,7 +15,7 @@ func _ready():
 			EnemyHealth = 2
 			EnemySpeed = 110
 		3:
-			EnemyHealth = 3
+			EnemyHealth = 2
 			EnemySpeed = 120
 # warning-ignore:return_value_discarded
 	self.connect("i_died", get_tree().get_root().find_node("Main", true, false), "update_score")

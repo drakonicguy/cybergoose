@@ -1,7 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/cybergoosecutscenewin.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Victory.gd" type="Script" id=2]
+[ext_resource path="res://assets/fff-forward.regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://scripts/Control.gd" type="Script" id=4]
+[ext_resource path="res://assets/audio/Strut.mp3.mp3" type="AudioStream" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Victory"
@@ -31,6 +34,10 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
+[sub_resource type="DynamicFont" id=2]
+size = 20
+font_data = ExtResource( 3 )
+
 [node name="Victory" type="Node2D"]
 script = ExtResource( 2 )
 
@@ -43,8 +50,10 @@ __meta__ = {
 }
 
 [node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color( 1, 1, 1, 0 )
 margin_right = 600.0
 margin_bottom = 600.0
+rect_scale = Vector2( 1.5, 1.5 )
 rect_pivot_offset = Vector2( 300, 300 )
 texture = ExtResource( 1 )
 __meta__ = {
@@ -54,4 +63,31 @@ __meta__ = {
 [node name="VictoryAnim" type="AnimationPlayer" parent="."]
 anims/Victory = SubResource( 1 )
 
-[connection signal="animation_finished" from="VictoryAnim" to="." method="_on_VictoryAnim_animation_finished"]
+[node name="Text" type="Label" parent="."]
+visible = false
+margin_left = 118.0
+margin_top = 191.0
+margin_right = 482.0
+margin_bottom = 365.0
+custom_fonts/font = SubResource( 2 )
+text = "CYBER GOOSE
+SAVES THE DAY!"
+align = 1
+valign = 1
+autowrap = true
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="."]
+margin_right = 600.0
+margin_bottom = 600.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+autoplay = true

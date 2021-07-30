@@ -10,17 +10,22 @@ func _ready():
 	$GUI/ScoreLabel.set_text(str(Globals.currentscore))
 	match Globals.currentstage:
 		1:
-			#25s
 			$GUI/TimeLabel/LevelTimer.set_wait_time(25.0)
-			$EnemyTimer.set_wait_time(2.0)
+			$EnemyTimer.set_wait_time(3.0)
 		2:
-			$GUI/TimeLabel/LevelTimer.set_wait_time(25.0)
-			$EnemyTimer.set_wait_time(1.5)
+			$GUI/TimeLabel/LevelTimer.set_wait_time(30.0)
+			$EnemyTimer.set_wait_time(2.5)
 		3:
-			$GUI/TimeLabel/LevelTimer.set_wait_time(20.0)
+			$GUI/TimeLabel/LevelTimer.set_wait_time(35.0)
+			$EnemyTimer.set_wait_time(2.0)
+		4:
+			$EnemyTimer.set_wait_time(2.5)
 	$GUI/CountDown/CountDownAnim.play()
 	get_tree().paused = true
-	$GUI/TimeLabel/LevelTimer.start()
+	if !Globals.currentstage == 4:
+		$GUI/TimeLabel/LevelTimer.start()
+	else:
+		$GUI/TimeLabel.hide()
 
 func _process(_delta):
 	if enemy != null && enemy.position.x < $Camera2D.position.x + 300 && enemy.position.x > $Camera2D.position.x - 300:
@@ -59,21 +64,31 @@ func _on_LevelTimer_timeout():
 	Globals.currentstage += 1
 	if Globals.currentscore > Globals.highscore:
 		Globals.highscore = Globals.currentscore
+	get_tree().paused = true
+	$GUI/StageClear.show()
+	yield(get_tree().create_timer(2), "timeout")
+	$GUI/StageClear.hide()
 # warning-ignore:return_value_discarded
-	get_tree().change_scene("res://Scenes/LevelComplete.tscn")
+	if Globals.currentstage == 4:
+		get_tree().change_scene("res://Scenes/Victory.tscn")
+	else:
+		get_tree().change_scene("res://Scenes/Main.tscn")
 
 func update_score(y):
 	Globals.currentscore += int((603 - y) / 2)
 	$GUI/ScoreLabel.text = str(Globals.currentscore)
 
-func _on_BackToMenuButton_pressed():
-	get_tree().paused = false
-# warning-ignore:return_value_discarded
-	get_tree().change_scene("res://Scenes/StartMenu.tscn")
+#func _on_BackToMenuButton_pressed():
+#	get_tree().paused = false
+## warning-ignore:return_value_discarded
+#	get_tree().change_scene("res://Scenes/StartMenu.tscn")
 
 func _on_CountDownTimer_timeout():
 	get_tree().paused = false
 
 func _on_CountDownAnim_animation_finished(_anim_name):
 	$GUI/CountDown/CountDownAnim.stop()
-	$BGM.play()
+	if Globals.currentstage == 3:
+		$BGM2.play()
+	else:
+		$BGM.play()

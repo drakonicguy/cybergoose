@@ -25,6 +25,9 @@ func change_hearts(amount):
 			i -= 1
 	else:
 		Globals.hp = 3
-		Globals.currentscore = Globals.prevstagescore
 # warning-ignore:return_value_discarded
-		get_tree().change_scene("res://Scenes/GameOver.tscn")
+		if Globals.currentstage == 4:
+			get_tree().change_scene("res://scenes/GameOver.tscn")
+		else:
+			Globals.currentscore = Globals.prevstagescore
+			get_tree().change_scene("res://Scenes/GameOverCutscene.tscn")

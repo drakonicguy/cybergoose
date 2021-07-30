@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/laserSmall_004.ogg-300c435390f6d59920ae1f652524bf9b.oggstr"
+
+[deps]
+
+source_file="res://scenes/laserSmall_004.ogg"
+dest_files=[ "res://.import/laserSmall_004.ogg-300c435390f6d59920ae1f652524bf9b.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

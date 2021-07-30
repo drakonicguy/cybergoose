@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scripts/LevelComplete.gd" type="Script" id=1]
 [ext_resource path="res://assets/buttonhover.png" type="Texture" id=2]
@@ -7,22 +7,19 @@
 [ext_resource path="res://assets/button.png" type="Texture" id=5]
 [ext_resource path="res://assets/buttonpressed.png" type="Texture" id=6]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=1]
 size = 40
 outline_size = 2
 outline_color = Color( 0.364706, 0.0156863, 0.466667, 1 )
 font_data = ExtResource( 4 )
 
-[sub_resource type="DynamicFont" id=1]
-outline_size = 2
-outline_color = Color( 0.364706, 0.0156863, 0.466667, 1 )
+[sub_resource type="DynamicFont" id=2]
 font_data = ExtResource( 4 )
 
 [sub_resource type="Animation" id=3]
-resource_name = "GameOver"
 length = 2.0
 tracks/0/type = "value"
-tracks/0/path = NodePath("TextureButton:rect_position")
+tracks/0/path = NodePath("Buttons/TextureButton:rect_position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -34,7 +31,7 @@ tracks/0/keys = {
 "values": [ Vector2( 200, 280 ), Vector2( 200, 260 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("TextureButton2:rect_position")
+tracks/1/path = NodePath("Buttons/TextureButton2:rect_position")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -46,7 +43,7 @@ tracks/1/keys = {
 "values": [ Vector2( 200, 420 ), Vector2( 200, 400 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Label:rect_position")
+tracks/2/path = NodePath("Node2D/Label:rect_position")
 tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -58,7 +55,7 @@ tracks/2/keys = {
 "values": [ Vector2( 140, 130 ), Vector2( 140, 150 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Label:modulate")
+tracks/3/path = NodePath("Node2D/Label:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -70,7 +67,7 @@ tracks/3/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Label3:modulate")
+tracks/4/path = NodePath("Buttons/Label3:modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -82,7 +79,7 @@ tracks/4/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Label4:modulate")
+tracks/5/path = NodePath("Buttons/Label4:modulate")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -94,7 +91,7 @@ tracks/5/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("TextureButton:modulate")
+tracks/6/path = NodePath("Buttons/TextureButton:modulate")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -106,7 +103,7 @@ tracks/6/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("TextureButton2:modulate")
+tracks/7/path = NodePath("Buttons/TextureButton2:modulate")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -117,6 +114,11 @@ tracks/7/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
+
+[sub_resource type="DynamicFont" id=4]
+outline_size = 2
+outline_color = Color( 0.364706, 0.0156863, 0.466667, 1 )
+font_data = ExtResource( 4 )
 
 [node name="GameOver" type="Node2D"]
 script = ExtResource( 1 )
@@ -131,24 +133,45 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="."]
-modulate = Color( 1, 1, 1, 0 )
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2( -10, -60 )
+
+[node name="Label" type="Label" parent="Node2D"]
 margin_left = 140.0
-margin_top = 130.0
+margin_top = 150.0
 margin_right = 460.0
-margin_bottom = 185.0
-custom_fonts/font = SubResource( 2 )
+margin_bottom = 205.0
+custom_fonts/font = SubResource( 1 )
 text = "GAME OVER!"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureButton" type="TextureButton" parent="."]
-modulate = Color( 1, 1, 1, 0 )
+[node name="Label2" type="Label" parent="Node2D/Label"]
+margin_top = 90.0
+margin_right = 320.0
+margin_bottom = 145.0
+custom_fonts/font = SubResource( 2 )
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "GameOver"
+anims/GameOver = SubResource( 3 )
+
+[node name="Buttons" type="Node2D" parent="."]
+position = Vector2( 0, 60 )
+
+[node name="TextureButton" type="TextureButton" parent="Buttons"]
+visible = false
+anchor_right = 0.467
 margin_left = 200.0
-margin_top = 280.0
+margin_top = 260.0
 margin_right = 264.0
-margin_bottom = 344.0
+margin_bottom = 324.0
 rect_scale = Vector2( 3, 1 )
 texture_normal = ExtResource( 5 )
 texture_pressed = ExtResource( 6 )
@@ -158,12 +181,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureButton2" type="TextureButton" parent="."]
-modulate = Color( 1, 1, 1, 2.44379e-06 )
+[node name="TextureButton2" type="TextureButton" parent="Buttons"]
 margin_left = 200.0
-margin_top = 420.0
+margin_top = 400.0
 margin_right = 264.0
-margin_bottom = 484.0
+margin_bottom = 464.0
 rect_scale = Vector2( 3, 1 )
 texture_normal = ExtResource( 5 )
 texture_pressed = ExtResource( 6 )
@@ -174,13 +196,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label3" type="Label" parent="."]
-modulate = Color( 1, 1, 1, 4.76837e-06 )
+[node name="Label3" type="Label" parent="Buttons"]
+visible = false
+anchor_right = 0.467
 margin_left = 200.0
 margin_top = 264.0
 margin_right = 390.0
 margin_bottom = 328.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "TRY AGAIN"
 align = 1
@@ -190,13 +213,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label4" type="Label" parent="."]
-modulate = Color( 1, 1, 1, 4.17233e-06 )
+[node name="Label4" type="Label" parent="Buttons"]
 margin_left = 200.0
 margin_top = 400.0
 margin_right = 390.0
 margin_bottom = 464.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "MENU"
 align = 1
@@ -206,9 +228,5 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "GameOver"
-anims/GameOver = SubResource( 3 )
-
-[connection signal="pressed" from="TextureButton" to="." method="_on_TextureButton_pressed"]
-[connection signal="pressed" from="TextureButton2" to="." method="_on_TextureButton2_pressed"]
+[connection signal="pressed" from="Buttons/TextureButton" to="." method="_on_TextureButton_pressed"]
+[connection signal="pressed" from="Buttons/TextureButton2" to="." method="_on_TextureButton2_pressed"]

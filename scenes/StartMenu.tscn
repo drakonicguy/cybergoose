@@ -164,9 +164,9 @@ __meta__ = {
 
 [node name="Title" type="TextureRect" parent="."]
 margin_left = 100.0
-margin_top = 46.96
+margin_top = 50.0
 margin_right = 500.0
-margin_bottom = 246.96
+margin_bottom = 250.0
 texture = ExtResource( 3 )
 expand = true
 stretch_mode = 1
@@ -204,11 +204,10 @@ __meta__ = {
 }
 
 [node name="TextureButton2" type="TextureButton" parent="."]
-modulate = Color( 1, 1, 1, 0.8 )
 margin_left = 200.0
-margin_top = 423.04
+margin_top = 420.0
 margin_right = 264.0
-margin_bottom = 487.04
+margin_bottom = 484.0
 rect_scale = Vector2( 3, 1 )
 texture_normal = ExtResource( 5 )
 texture_pressed = ExtResource( 4 )
@@ -225,7 +224,7 @@ margin_right = 390.0
 margin_bottom = 328.0
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "NEW GAME"
+text = "PLAY"
 align = 1
 valign = 1
 uppercase = true
@@ -234,14 +233,13 @@ __meta__ = {
 }
 
 [node name="Label3" type="Label" parent="."]
-modulate = Color( 1, 1, 1, 0.333333 )
 margin_left = 200.0
 margin_top = 344.0
 margin_right = 390.0
 margin_bottom = 408.0
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "CONTINUE"
+text = "ENDLESS"
 align = 1
 valign = 1
 uppercase = true
@@ -250,14 +248,13 @@ __meta__ = {
 }
 
 [node name="Label4" type="Label" parent="."]
-modulate = Color( 1, 1, 1, 0.666667 )
 margin_left = 200.0
 margin_top = 424.0
 margin_right = 390.0
 margin_bottom = 488.0
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "QUIT"
+text = "CREDITS"
 align = 1
 valign = 1
 uppercase = true
