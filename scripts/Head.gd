@@ -20,7 +20,6 @@ func _ready():
 		yield(self, "unflip")
 		$Sprite.rotation_degrees -=180
 		$Sprite.offset.x = 26
-	
 
 func _process(_delta):
 	pass
@@ -45,3 +44,9 @@ func _input(_event):
 			laser.transform = $ShootPositionFlipped.global_transform
 		else:
 			laser.transform = $ShootPosition.global_transform
+		var soundclip = randi() % 2
+		match soundclip:
+			0:
+				$Pew.play()
+			1:
+				$Pew2.play()

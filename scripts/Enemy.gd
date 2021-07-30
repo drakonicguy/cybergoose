@@ -33,6 +33,7 @@ func _on_Laser_Touched(_body):
 		
 		$Explosion.show()
 		$Explosion.play()
+		$Boom.play()
 		
 		var animationtimer = 0
 		var opacity = 1

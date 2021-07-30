@@ -1,7 +1,122 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scripts/LevelComplete.gd" type="Script" id=1]
-[ext_resource path="res://assets/enemywarning.png" type="Texture" id=2]
+[ext_resource path="res://assets/buttonhover.png" type="Texture" id=2]
+[ext_resource path="res://assets/buttondisabled.png" type="Texture" id=3]
+[ext_resource path="res://assets/fff-forward.regular.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://assets/button.png" type="Texture" id=5]
+[ext_resource path="res://assets/buttonpressed.png" type="Texture" id=6]
+
+[sub_resource type="DynamicFont" id=2]
+size = 40
+outline_size = 2
+outline_color = Color( 0.364706, 0.0156863, 0.466667, 1 )
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=1]
+outline_size = 2
+outline_color = Color( 0.364706, 0.0156863, 0.466667, 1 )
+font_data = ExtResource( 4 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "GameOver"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("TextureButton:rect_position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 200, 280 ), Vector2( 200, 260 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("TextureButton2:rect_position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2, 0.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 200, 420 ), Vector2( 200, 400 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Label:rect_position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 140, 130 ), Vector2( 140, 150 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Label:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Label3:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.5, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Label4:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.7, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("TextureButton:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("TextureButton2:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0.2, 0.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
 
 [node name="GameOver" type="Node2D"]
 script = ExtResource( 1 )
@@ -16,76 +131,84 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Title" type="ColorRect" parent="."]
-margin_left = 150.0
-margin_top = 100.0
-margin_right = 450.0
-margin_bottom = 180.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="Title"]
-margin_right = 300.0
-margin_bottom = 80.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "game over"
-align = 1
-valign = 1
-uppercase = true
+[node name="Label" type="Label" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 140.0
+margin_top = 130.0
+margin_right = 460.0
+margin_bottom = 185.0
+custom_fonts/font = SubResource( 2 )
+text = "GAME OVER!"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="TextureButton" type="TextureButton" parent="."]
-margin_left = 203.166
-margin_top = 258.166
-margin_right = 267.166
-margin_bottom = 322.166
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 200.0
+margin_top = 280.0
+margin_right = 264.0
+margin_bottom = 344.0
 rect_scale = Vector2( 3, 1 )
-texture_normal = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="."]
-margin_left = 150.0
-margin_top = 250.0
-margin_right = 450.0
-margin_bottom = 330.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "start over"
-align = 1
-valign = 1
-uppercase = true
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 6 )
+texture_hover = ExtResource( 2 )
+expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="TextureButton2" type="TextureButton" parent="."]
+modulate = Color( 1, 1, 1, 2.44379e-06 )
 margin_left = 200.0
-margin_top = 400.0
+margin_top = 420.0
 margin_right = 264.0
-margin_bottom = 464.0
+margin_bottom = 484.0
 rect_scale = Vector2( 3, 1 )
-texture_normal = ExtResource( 2 )
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 6 )
+texture_hover = ExtResource( 2 )
+texture_disabled = ExtResource( 3 )
+expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label2" type="Label" parent="."]
-margin_left = 150.0
-margin_top = 400.0
-margin_right = 450.0
-margin_bottom = 480.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "menu"
+[node name="Label3" type="Label" parent="."]
+modulate = Color( 1, 1, 1, 4.76837e-06 )
+margin_left = 200.0
+margin_top = 264.0
+margin_right = 390.0
+margin_bottom = 328.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "TRY AGAIN"
 align = 1
 valign = 1
 uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Label4" type="Label" parent="."]
+modulate = Color( 1, 1, 1, 4.17233e-06 )
+margin_left = 200.0
+margin_top = 400.0
+margin_right = 390.0
+margin_bottom = 464.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "MENU"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "GameOver"
+anims/GameOver = SubResource( 3 )
 
 [connection signal="pressed" from="TextureButton" to="." method="_on_TextureButton_pressed"]
 [connection signal="pressed" from="TextureButton2" to="." method="_on_TextureButton2_pressed"]

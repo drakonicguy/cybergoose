@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://scenes/Head.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/LaserProjectile.tscn" type="PackedScene" id=2]
@@ -15,6 +15,10 @@
 [ext_resource path="res://scenes/Heart.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scripts/TimeLabel.gd" type="Script" id=14]
 [ext_resource path="res://assets/cybergoosebg.png" type="Texture" id=15]
+[ext_resource path="res://assets/buttonhover.png" type="Texture" id=16]
+[ext_resource path="res://assets/button.png" type="Texture" id=17]
+[ext_resource path="res://assets/buttonpressed.png" type="Texture" id=18]
+[ext_resource path="res://assets/audio/Mercury.wav" type="AudioStream" id=19]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -28,12 +32,47 @@ extents = Vector2( 540, 60 )
 size = 70
 font_data = ExtResource( 7 )
 
+[sub_resource type="Animation" id=7]
+resource_name = "CountDownAnim"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ "3", "2
+", "1", "START!
+" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 3, 3.2, 3.4, 3.6, 3.8, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, true, false, true, false, true, false ]
+}
+
 [sub_resource type="DynamicFont" id=4]
 font_data = ExtResource( 7 )
 
 [sub_resource type="GDScript" id=5]
 script/source = "extends Label
 "
+
+[sub_resource type="DynamicFont" id=6]
+outline_size = 2
+outline_color = Color( 0.364706, 0.0156863, 0.466667, 1 )
+font_data = ExtResource( 7 )
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 5 )
@@ -91,6 +130,32 @@ laser_scene = ExtResource( 2 )
 [node name="GUI" type="CanvasLayer" parent="."]
 script = ExtResource( 10 )
 enemy_warning_scene = ExtResource( 9 )
+
+[node name="CountDown" type="Label" parent="GUI"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -174.0
+margin_top = -48.5
+margin_right = 174.0
+margin_bottom = 48.5
+custom_fonts/font = SubResource( 3 )
+text = "3"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CountDownAnim" type="AnimationPlayer" parent="GUI/CountDown"]
+pause_mode = 2
+autoplay = "CountDownAnim"
+anims/CountDownAnim = SubResource( 7 )
+
+[node name="CountDownTimer" type="Timer" parent="GUI/CountDown"]
+pause_mode = 2
+wait_time = 4.0
+autostart = true
 
 [node name="Label" type="Label" parent="GUI"]
 visible = false
@@ -183,9 +248,9 @@ __meta__ = {
 }
 
 [node name="PausedLabel" type="Label" parent="GUI/PauseScreen"]
-margin_left = 230.0
+margin_left = 214.0
 margin_top = 250.0
-margin_right = 312.0
+margin_right = 296.0
 margin_bottom = 272.0
 rect_scale = Vector2( 2, 2 )
 custom_fonts/font = SubResource( 4 )
@@ -196,9 +261,44 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="BackToMenuButton" type="TextureButton" parent="GUI/PauseScreen"]
+margin_left = 200.0
+margin_top = 300.0
+margin_right = 264.0
+margin_bottom = 364.0
+rect_scale = Vector2( 3, 1 )
+texture_normal = ExtResource( 17 )
+texture_pressed = ExtResource( 18 )
+texture_hover = ExtResource( 16 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="GUI/PauseScreen"]
+margin_left = 200.0
+margin_top = 300.0
+margin_right = 390.0
+margin_bottom = 364.0
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "NEW GAME"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 19 )
+
 [connection signal="warningready" from="." to="GUI" method="_on_Main_warningready"]
 [connection signal="timeout" from="EnemyTimer" to="." method="_on_EnemyTimer_timeout"]
 [connection signal="body_entered" from="DespawnArea" to="." method="_on_Enemy_ReachedBottom"]
+[connection signal="animation_finished" from="GUI/CountDown/CountDownAnim" to="." method="_on_CountDownAnim_animation_finished"]
+[connection signal="timeout" from="GUI/CountDown/CountDownTimer" to="." method="_on_CountDownTimer_timeout"]
 [connection signal="mouse_entered" from="GUI/ScrollLeft" to="Camera2D" method="_on_ScrollLeft"]
 [connection signal="mouse_entered" from="GUI/ScrollLeft" to="GUI" method="_on_ScrollLeft"]
 [connection signal="mouse_exited" from="GUI/ScrollLeft" to="Camera2D" method="_on_ScrollLeftStop"]
@@ -208,3 +308,4 @@ __meta__ = {
 [connection signal="mouse_exited" from="GUI/ScrollRight" to="Camera2D" method="_on_ScrollRightStop"]
 [connection signal="mouse_exited" from="GUI/ScrollRight" to="GUI" method="_on_ScrollRightStop"]
 [connection signal="timeout" from="GUI/TimeLabel/LevelTimer" to="." method="_on_LevelTimer_timeout"]
+[connection signal="pressed" from="GUI/PauseScreen/BackToMenuButton" to="." method="_on_BackToMenuButton_pressed"]

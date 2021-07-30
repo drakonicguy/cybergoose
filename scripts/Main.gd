@@ -10,11 +10,16 @@ func _ready():
 	$GUI/ScoreLabel.set_text(str(Globals.currentscore))
 	match Globals.currentstage:
 		1:
-			$GUI/TimeLabel/LevelTimer.set_wait_time(10.0)
+			#25s
+			$GUI/TimeLabel/LevelTimer.set_wait_time(25.0)
+			$EnemyTimer.set_wait_time(2.0)
 		2:
-			$GUI/TimeLabel/LevelTimer.set_wait_time(15.0)
+			$GUI/TimeLabel/LevelTimer.set_wait_time(25.0)
+			$EnemyTimer.set_wait_time(1.5)
 		3:
 			$GUI/TimeLabel/LevelTimer.set_wait_time(20.0)
+	$GUI/CountDown/CountDownAnim.play()
+	get_tree().paused = true
 	$GUI/TimeLabel/LevelTimer.start()
 
 func _process(_delta):
@@ -50,6 +55,7 @@ func _on_EnemyDied(_y):
 	pass
 
 func _on_LevelTimer_timeout():
+	Globals.prevstagescore = Globals.currentscore
 	Globals.currentstage += 1
 	if Globals.currentscore > Globals.highscore:
 		Globals.highscore = Globals.currentscore
@@ -57,5 +63,17 @@ func _on_LevelTimer_timeout():
 	get_tree().change_scene("res://Scenes/LevelComplete.tscn")
 
 func update_score(y):
-	Globals.currentscore += int(5000 / y)
+	Globals.currentscore += int((603 - y) / 2)
 	$GUI/ScoreLabel.text = str(Globals.currentscore)
+
+func _on_BackToMenuButton_pressed():
+	get_tree().paused = false
+# warning-ignore:return_value_discarded
+	get_tree().change_scene("res://Scenes/StartMenu.tscn")
+
+func _on_CountDownTimer_timeout():
+	get_tree().paused = false
+
+func _on_CountDownAnim_animation_finished(_anim_name):
+	$GUI/CountDown/CountDownAnim.stop()
+	$BGM.play()

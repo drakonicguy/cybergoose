@@ -14,5 +14,5 @@ func _on_TextureButton3_pressed():
 func _on_TextureButton2_pressed():
 	get_tree().quit()
 
-func _on_MenuAnim_animation_finished(anim_name):
-	$MenuAnim.stop()
+func _on_MenuAnim_animation_finished(_anim_name):
+	$MenuAnim.clear_queue()
