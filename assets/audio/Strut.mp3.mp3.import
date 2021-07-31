@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Strut.mp3.mp3-fc737645778fee1a294a907df3bbc823.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/Strut.mp3.mp3"
+dest_files=[ "res://.import/Strut.mp3.mp3-fc737645778fee1a294a907df3bbc823.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
