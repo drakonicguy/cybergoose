@@ -1,0 +1,142 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/cybergoosecutscene.png" type="Texture" id=1]
+[ext_resource path="res://assets/cybergoosecutscene2.png" type="Texture" id=2]
+[ext_resource path="res://scripts/BeginningCutsceneNew.gd" type="Script" id=3]
+[ext_resource path="res://assets/fff-forward.regular.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://assets/audio/Map.wav" type="AudioStream" id=5]
+
+[sub_resource type="Animation" id=1]
+resource_name = "BeginningCutscene"
+length = 7.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Pic1:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.6, 2.7, 3.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Pic2:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 3.2, 4.2, 6, 6.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Pic1:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 4.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -100, -50 ), Vector2( -25, -50 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Pic2:rect_scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 3.2, 4.2, 6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 2, 2 ), Vector2( 1.2, 1.2 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="DynamicFont" id=2]
+size = 20
+font_data = ExtResource( 4 )
+
+[node name="Node2D" type="CanvasLayer"]
+script = ExtResource( 3 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 600.0
+margin_bottom = 600.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Pic1" type="TextureRect" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = -25.0
+margin_top = -50.0
+margin_right = 675.0
+margin_bottom = 650.0
+texture = ExtResource( 1 )
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Pic2" type="TextureRect" parent="."]
+margin_left = -50.0
+margin_top = -80.0
+margin_right = 650.0
+margin_bottom = 620.0
+rect_scale = Vector2( 1.15556, 1.15556 )
+rect_pivot_offset = Vector2( 350, 350 )
+texture = ExtResource( 2 )
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/BeginningCutscene = SubResource( 1 )
+
+[node name="BorderTop" type="ColorRect" parent="."]
+margin_right = 600.0
+margin_bottom = 100.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BorderBottom" type="ColorRect" parent="."]
+margin_top = 500.0
+margin_right = 600.0
+margin_bottom = 600.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text" type="Label" parent="."]
+visible = false
+margin_left = 118.0
+margin_top = 191.0
+margin_right = 482.0
+margin_bottom = 365.0
+custom_fonts/font = SubResource( 2 )
+text = "Earth is under attack!
+The Glonks are invading!"
+align = 1
+valign = 1
+autowrap = true
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+autoplay = true
+
+[connection signal="animation_finished" from="AnimationPlayer" to="AnimationPlayer" method="_on_AnimationPlayer_animation_finished"]
