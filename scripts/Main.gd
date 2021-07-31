@@ -25,6 +25,7 @@ func _ready():
 	if !Globals.currentstage == 4:
 		$GUI/TimeLabel/LevelTimer.start()
 	else:
+		Globals.currentscore = 0
 		$GUI/TimeLabel.hide()
 
 func _process(_delta):
@@ -68,20 +69,16 @@ func _on_LevelTimer_timeout():
 	$GUI/StageClear.show()
 	yield(get_tree().create_timer(2), "timeout")
 	$GUI/StageClear.hide()
-# warning-ignore:return_value_discarded
 	if Globals.currentstage == 4:
+# warning-ignore:return_value_discarded
 		get_tree().change_scene("res://Scenes/Victory.tscn")
 	else:
+# warning-ignore:return_value_discarded
 		get_tree().change_scene("res://Scenes/Main.tscn")
 
 func update_score(y):
 	Globals.currentscore += int((603 - y) / 2)
 	$GUI/ScoreLabel.text = str(Globals.currentscore)
-
-#func _on_BackToMenuButton_pressed():
-#	get_tree().paused = false
-## warning-ignore:return_value_discarded
-#	get_tree().change_scene("res://Scenes/StartMenu.tscn")
 
 func _on_CountDownTimer_timeout():
 	get_tree().paused = false

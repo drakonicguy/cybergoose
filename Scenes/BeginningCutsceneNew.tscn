@@ -91,6 +91,7 @@ margin_left = -50.0
 margin_top = -80.0
 margin_right = 650.0
 margin_bottom = 620.0
+rect_scale = Vector2( 1.6, 1.6 )
 rect_pivot_offset = Vector2( 350, 350 )
 texture = ExtResource( 2 )
 stretch_mode = 1

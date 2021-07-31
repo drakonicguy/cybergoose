@@ -20,6 +20,7 @@ func _ready():
 	yield(get_tree().create_timer(3), "timeout")
 	$Text.text = "A certain robo-bird stops their evil plan..."
 	yield(get_tree().create_timer(5), "timeout")
+# warning-ignore:return_value_discarded
 	get_tree().change_scene("res://Scenes/Main.tscn")
 	
 func _input(_event):
